@@ -1,0 +1,229 @@
+version:"3"
+services:
+  consumer:
+    image: INVENTORY-SERVICE
+    networks:
+      - consumer-producer
+    depends_on:
+      - producer
+
+  producer:
+    image: PRODUCT-SERVICE
+    networks:
+      - "8002:8002"
+    depends_on:
+      - consumer-producer
+networks:
+  consumer-producer
+
+# eureka:
+#   client:
+#     fetch-registry: true
+#     register-with-eureka: true
+#     service-url:
+#       default-zone: http://localhost:8761eureka
+#   server:
+#     port: 8761,8001,8002,8003,8004,8005,8006.27017
+#   spring:
+#     application:
+#       name: naming-server,CUSTOMER-SERVICE,PRODUCT-SERVICE,INVENTORY-SERVICE,CART-SERVICE,ORDER-SERVICE,SHOPPING-SERVICE
+#     cloud:
+#       config:
+#         enabled: false
+#     data:
+#       mongodb:
+#         database: Microservices
+#         host: localhost
+#     datasource:
+#       password: lakshay@123
+#       url: jdbc:postgresql://localhost:5432/Database1,jdbc:mysql://localhost:3306/Microservices
+#       username: postgres,ROOT
+#       driver-class-name: com.mysql.cj.jdbc.Driver
+#     jpa:
+#       hibernate:
+#         ddl-auto: update
+#       properties:
+#         hibernate:
+#           dialect: org.hibernate.dialect.PostgreSQL81Dialect,org.hibernate.dialect.MySQL8Dialect
+#           format_sql: true
+#     kafka:
+#       consumer:
+#         auto-offset-reset: earliest
+#         bootstrap-servers: http://localhost:9092
+#         group-id: group-id
+#         key-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#         value-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#       producer:
+#         bootstrap-servers: http://localhost:9092
+#         key-deserializer: org.apache.Kafka.common.serialization.StringDeserializer
+#         value-deserializer: org.apache.Kafka.common.serialization.StringDeserializer      
+#     mvc:
+#       pathmatch:
+#         matching-strategy: ant-path-matcher    
+
+
+
+
+# eureka:
+#   client:
+#     fetch-registry: true
+#     register-with-eureka: true
+#     service-url:
+#       default-zone: http://localhost:8761eureka
+# server:
+#   port: 8001
+# spring:
+#   application:
+#     name: CUSTOMER-SERVICE
+#   datasource:
+#     password: lakshay@123
+#     url: jdbc:postgresql://localhost:5432/Database1
+#     username: postgres
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.PostgreSQL81Dialect
+#         format_sql: true
+#   mvc:
+#     pathmatch:
+#       matching-strategy: ant-path-matcher
+
+# eureka:
+#   client:
+#     service-url:
+#       default-zone: http://localhost:8761/eureka
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: '*'
+# server:
+#   port: 8002
+# spring:
+#   application:
+#     name: PRODUCT-SERVICE
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     password: lakshay@123
+#     url: jdbc:mysql://localhost:3306/Microservices
+#     username: root
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQL8Dialect
+#   kafka:
+#     consumer:
+#       auto-offset-reset: earliest
+#       bootstrap-servers: http://localhost:9092
+#       group-id: group-id
+#       key-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#       value-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#     producer:
+#       bootstrap-servers: http://localhost:9092
+#       key-deserializer: org.apache.Kafka.common.serialization.StringDeserializer
+#       value-deserializer: org.apache.Kafka.common.serialization.StringDeserializer
+
+# eureka:
+#   client:
+#     service-url:
+#       default-zone: http://localhost:8761/eureka
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: '*'
+# server:
+#   port: 8003
+# spring:
+#   application:
+#     name: INVENTORY-SERVICE
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     password: lakshay@123
+#     url: jdbc:mysql://localhost:3306/Microservices
+#     username: root
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQL8Dialect
+#   kafka:
+#     consumer:
+#       auto-offset-reset: earliest
+#       bootstrap-servers: http://localhost:9092
+#       group-id: group-id
+#       key-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#       value-serializer: org.apache.Kafka.common.serialization.StringDeserializer
+#     producer:
+#       bootstrap-servers: http://localhost:9092
+#       key-deserializer: org.apache.Kafka.common.serialization.StringDeserializer
+#       value-deserializer: org.apache.Kafka.common.serialization.StringDeserializer
+# eureka:
+#   client:
+#     service-url:
+#       default-zone: http://localhost:8761/eureka
+# server:
+#   port: 8004
+# spring:
+#   application:
+#     name: CART-SERVICE
+#   config:
+#     import: optional:configserver:http://localhost:8888
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     password: lakshay@123
+#     url: jdbc:mysql://localhost:3306/Microservices
+#     username: root
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQL8Dialect
+#   mvc:
+#     pathmatch:
+#       matching-strategy: ant-path-matcher
+
+# eureka:
+#   client:
+#     service-url:
+#       default-zone: http://localhost:8761/eureka
+# server:
+#   port: 8005
+# spring:
+#   application:
+#     name: ORDER-SERVICE
+#   data:
+#     mongodb:
+#       database: Microservices
+#       host: localhost
+#       port: 27017
+#   mvc:
+#     pathmatch:
+#       matching-strategy: ant-path-matcher
+# eureka:
+#   client:
+#     service-url:
+#       default-zone: http://localhost:8761/eureka
+# server:
+#   port: 8006
+# spring:
+#   application:
+#     name: SHOPPING-SERVICE
+#   datasource:
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+#     password: lakshay@123
+#     url: jdbc:mysql://localhost:3306/Microservices
+#     username: root
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.MySQL8Dialect
+
